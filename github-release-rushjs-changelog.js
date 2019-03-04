@@ -5,7 +5,7 @@
  *
  * Usage:
  *   $ GITHUB_TOKEN=aGitHubToken
- *   $ github-release-from-changelog [--filename CustomChangelog.md]
+ *   $ github-release-rushjs-changelog [--filename CustomChangelog.md]
  *
  * we will use `grizzly` (https://github.com/coderaiser/node-grizzly)
  * so we need
