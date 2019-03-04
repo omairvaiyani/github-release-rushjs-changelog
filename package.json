@@ -1,7 +1,7 @@
 {
-  "name": "github-release-from-changelog",
-  "version": "1.3.2",
-  "description": "Create GitHub releases from CHANGELOG.md",
+  "name": "github-release-rushjs-changelog",
+  "version": "1.0.0",
+  "description": "Create GitHub releases from CHANGELOG.md created by rushjs",
   "keywords": [
     "cli-app",
     "cli",
@@ -15,11 +15,11 @@
     "changelog",
     "history"
   ],
-  "author": "Maxime Thirouin",
+  "author": "Alexander Bartels",
   "license": "MIT",
-  "repository": "https://github.com/MoOx/github-release-from-changelog.git",
+  "repository": "https://github.com/alexanderbartels/github-release-rushjs-changelog.git",
   "bin": {
-    "github-release-from-changelog": "github-release-from-changelog.js"
+    "github-release-rushjs-changelog": "github-release-rushjs-changelog.js"
   },
   "dependencies": {
     "grizzly": "^3.0.3",
@@ -35,6 +35,6 @@
     "precommit": "pretty-quick --staged",
     "test": "echo \"I use myself\"",
     "release": "npmpub --no-release",
-    "postrelease": "./github-release-from-changelog.js"
+    "postrelease": "./github-release-rushjs-changelog.js"
   }
 }
