@@ -100,9 +100,11 @@ var repo = repoData[1].replace(/\.git$/, "");
 // version
 var version = pkg.version;
 
-// Look for the tag in either X.Y.Z or vX.Y.X formats
+// Look for the tag in "<pkg.name>_v<pgk.version>" format
 var tags = cp.execSync("git tag", { encoding: "utf8" });
-var tagMatches = tags.match(new RegExp("^(v?)" + version + "$", "gm"));
+var tagMatches = tags.match(
+  new RegExp("^" + pkg.name + "_v" + version + "$", "gm")
+);
 var tagName;
 if (tagMatches === null) {
   throw "Tag " + version + " or v" + version + " not found";
@@ -115,25 +117,22 @@ var body = [];
 var start;
 const changelogLines = changelog.replace(/\r\n/g, "\n").split("\n");
 // determine whether the log format of http://keepachangelog.com/en/1.0.0/: check the first line and check if there is a second level heading linking to the version diff
-const isKeepAChangelogFormat =
-  changelogLines[0] === "# Changelog" &&
-  changelog.indexOf("\n## [" + version + "]") !== -1;
+const isKeepAChangelogFormat = true;
+// =
+//  changelogLines[0] === "# Change Log" &&
+//  changelog.indexOf("\n## [" + version + "]") !== -1;
 // console.log(isKeepAChangelogFormat);
 
 // read from # version to the next # .*
 changelogLines.some(function(line, i) {
   // start with the # version
-  if (
-    !start &&
-    (line.indexOf("# " + version) === 0 ||
-      (isKeepAChangelogFormat && line.indexOf("## [" + version) === 0))
-  ) {
+  if (!start && line.indexOf("## " + version) === 0) {
     start = true;
   } else if (
     start &&
     (line.indexOf("# ") === 0 ||
-      (isKeepAChangelogFormat && line.indexOf("## [") === 0) ||
-      (line.indexOf("[") === 0))
+      (isKeepAChangelogFormat && line.indexOf("## ") === 0) ||
+      line.indexOf("[") === 0)
   ) {
     // end with another # version or a footer link
     return true;
