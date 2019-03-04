@@ -103,7 +103,7 @@ var version = pkg.version;
 // Look for the tag in "<pkg.name>_v<pgk.version>" format
 var tags = cp.execSync("git tag", { encoding: "utf8" });
 var tagMatches = tags.match(
-  new RegExp("^" + pkg.name + "_v" + version + "$", "gm")
+  new RegExp("^(" + pkg.name + "_v)?" + version + "$", "gm")
 );
 var tagName;
 if (tagMatches === null) {
