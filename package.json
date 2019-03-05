@@ -1,5 +1,5 @@
 {
-  "name": "github-release-rushjs-changelog1",
+  "name": "github-release-rushjs-changelog",
   "version": "1.0.0",
   "description": "Create GitHub releases from CHANGELOG.md created by rushjs",
   "keywords": [
