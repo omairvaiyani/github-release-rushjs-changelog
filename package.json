@@ -1,6 +1,6 @@
 {
   "name": "github-release-rushjs-changelog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create GitHub releases from CHANGELOG.md created by rushjs",
   "keywords": [
     "cli-app",
