@@ -15,19 +15,18 @@
  * - release name (tag)
  * - description (changelog section corresponding to tag)
  */
+// read command line arguments
+import cp from "child_process";
+import fs from "fs";
 import release from "grizzly";
+import minimist from "minimist";
 
 var token = process.env.GITHUB_TOKEN;
 if (!token) {
   throw "GITHUB_TOKEN required";
 }
 
-// read command line arguments
-var cp = require("child_process");
-var minimist = require("minimist");
 var argv = minimist(process.argv.slice(2));
-
-var fs = require("fs");
 
 // changelog file name
 var changelogFileName = argv.filename;
@@ -61,7 +60,7 @@ if (!changelogFileName) {
 // read package.json
 var pkg;
 try {
-  pkg = require(process.cwd() + "/package.json");
+  pkg = import(process.cwd() + "/package.json");
 } catch (e) {
   throw "No package.json found in " + process.cwd();
 }

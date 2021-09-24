@@ -15,6 +15,7 @@
     "changelog",
     "history"
   ],
+  "type": "module",
   "author": "Alexander Bartels",
   "license": "MIT",
   "repository": "https://github.com/alexanderbartels/github-release-rushjs-changelog.git",
