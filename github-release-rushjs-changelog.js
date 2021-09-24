@@ -15,6 +15,7 @@
  * - release name (tag)
  * - description (changelog section corresponding to tag)
  */
+import release from "grizzly";
 
 var token = process.env.GITHUB_TOKEN;
 if (!token) {
@@ -56,9 +57,6 @@ if (!changelogFileName) {
   }
 }
 // console.log("changelog filename", changelogFileName);
-
-// get dep
-var release = require("grizzly");
 
 // read package.json
 var pkg;
