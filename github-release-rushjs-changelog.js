@@ -160,6 +160,7 @@ async function getReleaseOptions() {
 
   release(token, releaseOptions, function(err) {
     if (err) {
+      console.log(err);
       throw err;
     }
     console.log(user + "/" + repo + " " + tagName + " released");
