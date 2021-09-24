@@ -22,7 +22,7 @@
     "github-release-rushjs-changelog": "github-release-rushjs-changelog.js"
   },
   "dependencies": {
-    "grizzly": "^3.0.3",
+    "grizzly": "^5.0.0",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
