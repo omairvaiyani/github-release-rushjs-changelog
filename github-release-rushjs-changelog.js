@@ -60,7 +60,7 @@ if (!changelogFileName) {
 // read package.json
 var pkg;
 try {
-  pkg = import(process.cwd() + "/package.json");
+  pkg = await import(process.cwd() + "/package.json");
 } catch (e) {
   throw "No package.json found in " + process.cwd();
 }
