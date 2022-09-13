@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "grizzly": "^5.0.0",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "@octokit/rest": "^18.9.1"
   },
   "devDependencies": {
     "husky": "^0.14.3",

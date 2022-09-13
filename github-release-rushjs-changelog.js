@@ -16,10 +16,10 @@
  * - description (changelog section corresponding to tag)
  */
 // read command line arguments
+import { Octokit } from "@octokit/rest";
 import cp from "child_process";
 import fs from "fs";
 import { readFile } from "fs/promises";
-import release from "grizzly";
 import minimist from "minimist";
 
 var token = process.env.GITHUB_TOKEN;
@@ -156,13 +156,40 @@ async function getReleaseOptions() {
 }
 
 (async () => {
-  var releaseOptions = await getReleaseOptions();
+  const releaseOptions = await getReleaseOptions();
+  const releasePath =
+    releaseOptions.user + "/" + releaseOptions.repo + " " + releaseOptions.tag;
 
-  release(token, releaseOptions, function(err) {
-    if (err) {
-      console.log(err);
-      throw err;
-    }
-    console.log(user + "/" + repo + " " + tagName + " released");
+  const octokit = new Octokit({
+    auth: `token ${token}`
   });
+
+  // If a release with this tag already exists
+  // we will not issue a new release
+  let shouldRelease = false;
+  try {
+    await octokit.repos.getReleaseByTag({
+      repo: releaseOptions.repo,
+      owner: releaseOptions.user,
+      tag: releaseOptions.tag
+    });
+  } catch (e) {
+    if (e.status === 404) {
+      shouldRelease = true;
+    } else {
+      throw e;
+    }
+  }
+
+  if (shouldRelease) {
+    release(token, releaseOptions, function(err) {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+      console.log(releasePath, "released");
+    });
+  } else {
+    console.log(releasePath, "already exists");
+  }
 })();
