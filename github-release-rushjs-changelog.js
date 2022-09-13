@@ -20,6 +20,7 @@ import { Octokit } from "@octokit/rest";
 import cp from "child_process";
 import fs from "fs";
 import { readFile } from "fs/promises";
+import release from "grizzly";
 import minimist from "minimist";
 
 var token = process.env.GITHUB_TOKEN;
